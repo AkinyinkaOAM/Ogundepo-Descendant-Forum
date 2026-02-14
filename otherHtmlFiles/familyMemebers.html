@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FamilyMembers</title>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            list-style-type: none;
+
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #0A509B;
+            color: white;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 10px;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        /* MEDIA QUERIES FOR NAV */
+
+/* Small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin: 8px 0;
+  }
+
+  nav ul li a {
+    font-size: 14px;
+  }
+}
+
+/* Medium devices (tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  nav ul li a {
+    font-size: 16px;
+  }
+}
+
+/* Large devices (desktops, 768px and up) */
+@media (min-width: 768px) {
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  nav ul li a {
+    font-size: 18px;
+  }
+}
+
+         /* MARQUEE */
+        .marquee {
+            margin-top: 60px;
+            background: #69BEEB;
+            color: #000;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 15s linear infinite;
+        }
+         @keyframes scroll {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+         /* FLOATING LOGO */
+        .floating-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: yellowgreen;
+            font-weight: bold;
+            animation: spin 6s linear infinite;
+            z-index: 50;
+        }
+          
+        .pict {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .member {
+            border: thick solid grey;
+            /* padding: 5px 5px 40px; */
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        img {
+            border-radius: 20px 20px 0 0;
+        }
+
+        p.name {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./familyMemebers.html">Family Members</a></li>
+            <li><a href="./familyTree.html">Family Tree</a></li>
+            <li><a href="./familyHistory.html">Family History</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- MARQUEE -->
+    <div class="marquee"> 
+        <span>Welcome to The Ogundepo's Family Official Website — Unity • Heritage • Legacy</span>
+    </div>
+
+    <div class="floating-logo"><img src="./images/newlogo.png" width="80px" alt=""></div>
+    <ul class="pict">
+        <br><br><br>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-end" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/baba dk no-bg.jpeg" class="rounded float-end" width="150px" alt="">
+            <p class="name">Elder <br> Pa Dauda K. Oladejo Oderinde <br> Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Alfa yahyah.png" class="rounded float-end" width="150px" alt="...">
+            <p class="name">Chairman <br> Alfa Yahyah Eruola Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Bro weydeh.png" class="rounded float-start" width="150px" alt="">
+            <p class="name">Baale Ogbere Idi-Osan <br> Brother Waheed Oderinde <br> Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/iyalode ogundepo white bg.png" class="rounded float-end" width="150px" alt="...">
+
+            <p class="name">iyalode Ogundepo <br> Mrs Omotayo Adebisi Ibitoye <br> Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/iyalode oderinde no-bg.jpeg" class="rounded float-end" width="150px" alt="...">
+            <p class="name">Iyalode Oderinde <br> Mrs Jemilat Bakare Oderinde <br> Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/ewa wth bg.png" class="rounded float-start" width="150px" alt="...">
+            <p class="name">Ekerin Baale <br> Jelili Oderinde Ogundepo <br> (Ewa)</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-end" width="150px" alt="">
+            <p class="name">Adele</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-end" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-end" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-start" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-end" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-start" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-end" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-start" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-end" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-start" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-end" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-start" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+        <li class="member">
+            <img src="../images/Adele.png" class="rounded float-end" width="150px" alt="">
+            <p class="name">Adele <br> Pa Olaniyi Ibitoye Ogundepo</p>
+        </li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>OgundepoFamily</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <style>
+    :root {
+      --ink: #1f2937;
+      --accent: #5b21b6;
+      --paper: #f6f7fb;
+      --card: #ffffff;
+      --line: #9ca3af;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .bg-body-tertiary {
+      background-color: #0A509B !important;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #0A509B;
+      color: white;
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      padding: 10px;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    /* MEDIA QUERIES FOR NAV */
+
+/* Small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin: 8px 0;
+  }
+
+  nav ul li a {
+    font-size: 14px;
+  }
+}
+
+/* Medium devices (tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  nav ul li a {
+    font-size: 16px;
+  }
+}
+
+/* Large devices (desktops, 768px and up) */
+@media (min-width: 768px) {
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  nav ul li a {
+    font-size: 18px;
+  }
+}
+
+     /* MARQUEE */
+        .marquee {
+            margin-top: 60px;
+            background: #69BEEB;
+            color: #000;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 15s linear infinite;
+        }
+         @keyframes scroll {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+    header {
+      text-align: center;
+      padding: 28px 16px;
+    }
+     /* FLOATING LOGO */
+        .floating-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: yellowgreen;
+            font-weight: bold;
+            animation: spin 6s linear infinite;
+            z-index: 50;
+        }
+
+         @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+    .stage {
+      position: relative;
+      padding: 60px 120px;
+      overflow-x: auto;
+      min-height: 650px;
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: flex;
+      gap: 160px;
+      align-items: flex-start;
+    }
+
+    /* COLUMNS */
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* ROOT COLUMN */
+    .root-col {
+      position: relative;
+    }
+
+    /* NODES */
+    .node {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 14px 22px;
+      min-width: 190px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .08);
+      cursor: pointer;
+    }
+
+    .node.root {
+      background: linear-gradient(135deg, var(--accent), #4c1d95);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .node.child {
+      font-weight: 500;
+    }
+
+    .node.desc {
+      background: #fafafa;
+      font-size: .92rem;
+    }
+
+    .fade {
+      animation: fade .3s ease;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateX(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="./familyMemebers.html">Family Members</a></li>
+      <li><a href="./familyTree.html">Family Tree</a></li>
+      <li><a href="./familyHistory.html">Family History</a></li>
+      <li><a href="./gallery.html">Gallery</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <!-- MARQUEE -->
+    <div class="marquee">
+        <span>Welcome to The Ogundepo's Family Official Website — Unity • Heritage • Legacy</span>
+    </div>
+
+  <header>
+    <div class="floating-logo"><img src="./images/newlogo.png" width="80px" alt=""></div>
+    <h1>Ogundepo Family Genealogy</h1>
+    <p>Strict parent-aligned SVG genealogy chart</p>
+  </header>
+
+  <div class="stage" id="stage">
+    <svg id="svg"></svg>
+
+    <div class="layout">
+      <!-- ROOT -->
+      <div class="column root-col" id="rootCol">
+        <div class="node root" id="ogundepo">Ogundepo</div>
+      </div>
+
+      <!-- CHILDREN -->
+      <div class="column" id="childrenCol"></div>
+
+      <!-- GRANDCHILDREN -->
+      <div class="column" id="grandCol"></div>
+
+      <!-- GREAT GRANDCHILDREN -->
+      <div class="column" id="greatCol"></div>
+    </div>
+  </div>
+
+  <script>
+    const family = {
+      Oyeniyi: ["Oyeniyi I", "Oyeniyi II", "Oyeniyi III"],
+      Oyedele: ["Oyedele I", "Oyedele II", "Oyedele III"],
+      Ibitoye: ["Ibitoye I", "Ibitoye II", "Ibitoye III"],
+      Ebeloku: ["Ebeloku I", "Ebeloku II", "Ebeloku III"],
+      Bolarinwa: ["Bolarinwa I", "Bolarinwa II", "Bolarinwa III"],
+      Akinsanmi: ["Akinsanmi I", "Akinsanmi II", "Akinsanmi III"],
+      Oderinde: ["Oderinde I", "Oderinde II", "Oderinde III"],
+      Akinbiyi: ["Akinbiyi I", "Akinbiyi II", "Akinbiyi III"],
+      Eruola: ["Eruola I", "Eruola II", "Eruola III"]
+    };
+
+    const stage = document.getElementById("stage");
+    const svg = document.getElementById("svg");
+    const root = document.getElementById("ogundepo");
+    const childrenCol = document.getElementById("childrenCol");
+    const grandCol = document.getElementById("grandCol");
+    const greatCol = document.getElementById("greatCol");
+
+    function greatKids(name) { return [`${name} A`, `${name} B`]; }
+
+    function line(from, to) {
+      const a = from.getBoundingClientRect();
+      const b = to.getBoundingClientRect();
+      const s = stage.getBoundingClientRect();
+
+      const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      l.setAttribute("x1", a.right - s.left);
+      l.setAttribute("y1", a.top + a.height / 2 - s.top);
+      l.setAttribute("x2", b.left - s.left);
+      l.setAttribute("y2", b.top + b.height / 2 - s.top);
+      l.setAttribute("stroke", "#9ca3af");
+      l.setAttribute("stroke-width", "2");
+      svg.appendChild(l);
+    }
+
+    function redraw() {
+      svg.innerHTML = "";
+      svg.setAttribute("width", stage.scrollWidth);
+      svg.setAttribute("height", stage.scrollHeight);
+
+      document.querySelectorAll(".node.child").forEach(n => line(root, n));
+      document.querySelectorAll(".node.grand").forEach(n => line(n.dataset.parent, n));
+      document.querySelectorAll(".node.great").forEach(n => line(n.dataset.parent, n));
+    }
+
+    let bolarinwaNode = null;
+
+    Object.keys(family).forEach(name => {
+      const n = document.createElement("div");
+      n.className = "node child";
+      n.textContent = name;
+      childrenCol.appendChild(n);
+
+      if (name === "Bolarinwa") bolarinwaNode = n;
+
+      n.onclick = () => {
+        grandCol.innerHTML = "";
+        greatCol.innerHTML = "";
+
+        family[name].forEach(gc => {
+          const g = document.createElement("div");
+          g.className = "node desc grand fade";
+          g.textContent = gc;
+          g.dataset.parent = n;
+          grandCol.appendChild(g);
+
+          greatKids(gc).forEach(gg => {
+            const ggN = document.createElement("div");
+            ggN.className = "node desc great fade";
+            ggN.textContent = gg;
+            ggN.dataset.parent = g;
+            greatCol.appendChild(ggN);
+          });
+        });
+
+        setTimeout(redraw, 20);
+      };
+    });
+
+    window.onload = () => {
+      // Align Ogundepo vertically with Bolarinwa
+      const r = bolarinwaNode.getBoundingClientRect();
+      const rootCol = document.getElementById("rootCol");
+      const stageRect = stage.getBoundingClientRect();
+      rootCol.style.marginTop = (r.top - stageRect.top) + "px";
+      redraw();
+    };
+
+    window.onresize = redraw;
+  </script>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script>
+        const events = {
+            event1: {
+                video: "../videos/Dr. Omololu Olunloyo Park, Ibadan.mp4",
+                images: [
+                    "../images/fam1.jpeg",
+                    "../images/fam2.jpeg",
+                    "../images/fam3.jpeg",
+                ]
+            },
+
+            event2: {
+                video: "../videos/Dr. Omololu Olunloyo Park, Ibadan.mp4",
+                images: [
+                   "../images/fam1.jpeg",
+                    "../images/fam2.jpeg",
+                    "../images/fam3.jpeg",
+                ]
+            }
+        };
+
+        function openEvent(eventName) {
+            const gallery = document.getElementById("gallery");
+            const video = document.getElementById("eventVideo");
+
+            gallery.innerHTML = "";
+
+            // Change video
+            video.src = events[eventName].video;
+
+            // Load images
+            events[eventName].images.forEach(img => {
+                const image = document.createElement("img");
+                image.src = img;
+                gallery.appendChild(image);
+            });
+        }
+
+    </script>
+    <style>
+        -->body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        .bg-body-tertiary {
+            background-color: #0A509B !important;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #0A509B;
+            color: white;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 10px;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* MEDIA QUERIES FOR NAV */
+
+        /* Small devices (phones, less than 576px) */
+        @media (max-width: 575.98px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 8px 0;
+            }
+
+            nav ul li a {
+                font-size: 14px;
+            }
+        }
+
+        /* Medium devices (tablets, 576px to 767px) */
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+
+            nav ul li a {
+                font-size: 16px;
+            }
+        }
+
+        /* Large devices (desktops, 768px and up) */
+        @media (min-width: 768px) {
+            nav ul {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            nav ul li a {
+                font-size: 18px;
+            }
+        }
+
+
+        /* MARQUEE */
+        .marquee {
+            margin-top: 60px;
+            background: #69BEEB;
+            color: #000;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 15s linear infinite;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* FLOATING LOGO */
+        .floating-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: blue;
+            font-weight: bold;
+            animation: spin 6s linear infinite;
+            z-index: 50;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* EVENT BUTTONS */
+        .event-menu {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .event-menu button {
+            padding: 12px 20px;
+            margin: 10px;
+            border: none;
+            background: #0A509B;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+
+        .event-menu button:hover {
+            background: #083b70;
+        }
+
+        /* VIDEO */
+        .video-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        video {
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+
+        /* IMAGE GRID */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./familyMemebers.html">Family Members</a></li>
+            <li><a href="./familyTree.html">Family Tree</a></li>
+            <li><a href="./familyHistory.html">Family History</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <span>Welcome to The Ogundepo's Family Official Website — Unity • Heritage • Legacy</span>
+    </div>
+
+
+    <h1>Gallery</h1>
+
+
+
+
+   
+
+    <!-- VIDEO SECTION -->
+    <div class="video-section">
+        <h2>Event Videos</h2>
+    
+        <video controls id="eventVideo">
+            <source src="../videos/Dr. Omololu Olunloyo Park, Ibadan.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- GALLERY DISPLAY -->
+    <div id="gallery" class="gallery-grid"></div>
+
+ <div class="event-menu">
+        <button onclick="openEvent('event1')">2025 Family Meeting</button>
+        <button onclick="openEvent('event2')">Chief Coronation</button>
+    </div>
+
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+</html>

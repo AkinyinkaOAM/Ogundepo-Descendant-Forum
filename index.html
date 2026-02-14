@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OgundepoDescendatForum</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #0A509B;
+            color: white;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .nav-link {
+            color: white !important;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 10px;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .collapse navbar-collapse {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* MEDIA QUERIES FOR NAV */
+
+        /* Small devices (phones, less than 576px) */
+        @media (max-width: 575.98px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 8px 0;
+            }
+
+            nav ul li a {
+                font-size: 14px;
+            }
+        }
+
+        /* Medium devices (tablets, 576px to 767px) */
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+
+            nav ul li a {
+                font-size: 16px;
+            }
+        }
+
+        /* Large devices (desktops, 768px and up) */
+        @media (min-width: 768px) {
+            nav ul {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            nav ul li a {
+                font-size: 18px;
+            }
+        }
+
+
+        /* MARQUEE */
+        .marquee {
+            margin-top: 60px;
+            background: #69BEEB;
+            color: #000;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 15s linear infinite;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* CAROUSEL */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 1s ease;
+        }
+
+
+        .fa-less-than {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+            border: 2px solid orangered;
+        }
+
+        .fa-greater-than {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: yellow;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            border: 2px solid orangered;
+        }
+
+        .slide {
+            width: 100%;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        h3 {
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .slide:nth-child(1) {
+            background: #ccc;
+        }
+
+        .slide:nth-child(2) {
+            background: #999;
+        }
+
+        .slide:nth-child(3) {
+            background: #777;
+        }
+
+        .slide {
+            width: 100%;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide:nth-child(1) {
+            background: #ccc;
+        }
+
+        .slide:nth-child(2) {
+            background: #999;
+        }
+
+        .slide:nth-child(3) {
+            background: #777;
+        }
+
+        /* FLOATING LOGO */
+        .floating-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: spin 6s linear infinite;
+            z-index: 50;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .adele {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .adele img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .leaders {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            border: thick solid grey;
+        }
+
+        .adele-image {
+            border: 20px solid grey;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        footer {
+            background: #0A509B;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media(max-width:768px) {
+            .adele {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./otherHtmlFiles/familyMemebers.html">Family Members</a></li>
+            <li><a href="./otherHtmlFiles/familyTree.html">Family Tree</a></li>
+            <li><a href="./otherHtmlFiles/familyHistory.html">Family History</a></li>
+            <li><a href="./otherHtmlFiles/gallery.html">Gallery</a></li>
+            <li><a href="./otherHtmlFiles/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <span>Welcome to The Ogundepo's Family Official Website — Unity • Heritage • Legacy</span>
+    </div>
+
+    <!-- CAROUSEL (Bootstrap) -->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="floating-logo"><img src="./images/newlogo.png" width="80px" alt=""></div>
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="./images/Palace.png" class="d-block w-100" width="100%" height="30%">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Ogundepo's Palace</h3>
+                    <!-- <p>Some representative placeholder content for the first slide.</p> -->
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="./images/Ai mapo hall.png" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Mapo Hall</h3>
+                    <!-- <p>Some representative placeholder content for the second slide.</p> -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./images/Olubadan Palace.webp" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Olubadan Palace</h3>
+                    <!-- <p>Some representative placeholder content for the third slide.</p> -->
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
+    <!-- ADELE SECTION -->
+    <section class="adele" id="history">
+        <img src="./images/Adele.png" alt="Adele" class="adele-image" />
+        <div>
+            <h2>Adele Ogundepo</h2>
+            <p>
+                Adele Ogundepo stands as the founding patriarch of the Ogundepo lineage. His vision, discipline, and
+                leadership laid the foundation upon which generations have flourished. Known for wisdom and resilience,
+                Adele guided the family through defining moments in history.
+            </p>
+            <p>
+                His legacy continues through strong family values, unity, and respect for tradition.
+            </p>
+        </div>
+    </section>
+
+    <!-- FATHERS & CHIEFS -->
+    <section>
+        <h2 style="text-align:center;">Our Fathers & Chiefs</h2>
+        <div class="leaders">
+
+            <div class="card">
+                <img src="./images/baba dk no-bg.jpeg" />
+                <h4>PA D.K. Oderinde Ogundepo</h4>
+                <p>Family leader and custodian of tradition.</p>
+            </div>
+
+            <div class="card">
+                <img src="./images/Alfa yahyah.png" />
+                <h4>Alfa Yahya Eruola Ogundepo</h4>
+                <p>Chairman Ogundepo's compound.</p>
+            </div>
+
+            <div class="card">
+                <img src="./images/Bro weydeh.png" />
+                <h4>Baale Waheed Oderinde Ogundepo</h4>
+                <p>Baale Ogbere Idi-Osan.</p>
+            </div>
+            <div class="card">
+                <img src="./images/ewa wth bg.png" />
+                <h4>Jelili Olasupo Oderinde Ogundepo</h4>
+                <p>Ekerin Baale Idi-Osan.</p>
+            </div>
+            <div class="card">
+                <img src="./images/iyalode oderinde no-bg.jpeg" />
+                <h4>Alhaja Jemilat Bakare Oderinde Ogundepo</h4>
+                <p>Iyalode Oderinde.</p>
+            </div>
+
+            <div class="card">
+                <img src="./images/iyalode ogundepo white bg.png" />
+                <h4>Mrs Omotayo Adebisi Ibitoye Ogundepo</h4>
+                <p>Iyalode Ogundepo.</p>
+            </div>
+            <div class="card">
+                <img src="./images/iyalode ogundepo white bg.png" />
+                <h4>Mrs Omotayo Adebisi Ibitoye Ogundepo</h4>
+                <p>Iyalode Ogundepo.</p>
+            </div>
+
+            <div class="card">
+                <img src="./images/iyalode oderinde no-bg.jpeg" />
+                <h4>Alhaja Jemilat Bakare Oderinde Ogundepo</h4>
+                <p>Iyalode Oderinde.</p>
+            </div>
+
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 The Ogundepo Family. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let index = 0;
+        const carousel = document.getElementById('carousel');
+
+        setInterval(() => {
+            index = (index + 1) % 3;
+            carousel.style.transform = `translateX(-${index * 100}%)`;
+        }, 4000);
+
+        function nextSlide() {
+            index = (index + 1) % totalSlides;
+            updateCarousel();
+        }
+
+
+        function prevSlide() {
+            index = (index - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        setInterval(nextSlide, 4000);
+    </script>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+</html>
