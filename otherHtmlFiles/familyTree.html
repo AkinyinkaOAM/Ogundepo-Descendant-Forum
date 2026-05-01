@@ -1,135 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>OgundepoFamily</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <style>
-    :root {
-      --ink: #1f2937;
-      --accent: #5b21b6;
-      --paper: #f6f7fb;
-      --card: #ffffff;
-      --line: #9ca3af;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Segoe UI", system-ui, sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-    }
-
-    .bg-body-tertiary {
-      background-color: #0A509B !important;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    /* NAVBAR */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #0A509B;
-      color: white;
-      display: flex;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      padding: 10px;
-      margin: 0;
-    }
-
-    nav ul li {
-      margin: 0 15px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    /* MEDIA QUERIES FOR NAV */
-
-/* Small devices (phones, less than 576px) */
-@media (max-width: 575.98px) {
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav ul li {
-    margin: 8px 0;
-  }
-
-  nav ul li a {
-    font-size: 14px;
-  }
-}
-
-/* Medium devices (tablets, 576px to 767px) */
-@media (min-width: 576px) and (max-width: 767.98px) {
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  nav ul li a {
-    font-size: 16px;
-  }
-}
-
-/* Large devices (desktops, 768px and up) */
-@media (min-width: 768px) {
-  nav ul {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  nav ul li a {
-    font-size: 18px;
-  }
-}
-
-     /* MARQUEE */
-        .marquee {
-            margin-top: 60px;
-            background: #69BEEB;
-            color: #000;
-            padding: 10px;
-            overflow: hidden;
-            white-space: nowrap;
+    <meta charset="UTF-8">
+    <title>Ogundepo Family Genealogy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1f2937;
+            --accent: #5b21b6;
+            --paper: #f6f7fb;
+            --card: #ffffff;
+            --line: #9ca3af;
+            --nav-bg: #0A509B;
+            --path-color: #7c3aed;
         }
 
-        .marquee span {
-            display: inline-block;
-            animation: scroll 15s linear infinite;
-        }
-         @keyframes scroll {
-            from {
-                transform: translateX(100%);
-            }
-
-            to {
-                transform: translateX(-100%);
-            }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            padding-top: 70px;
         }
 
-    header {
-      text-align: center;
-      padding: 28px 16px;
-    }
-     /* FLOATING LOGO */
+        /* NAVBAR & MARQUEE */
+        nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); z-index: 1050; }
+        nav ul { list-style: none; display: flex; justify-content: center; padding: 12px; margin: 0; }
+        nav ul li { margin: 0 15px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: 600; }
+
+        .marquee { background: #69BEEB; padding: 8px; overflow: hidden; white-space: nowrap; font-weight: 500; }
+        .marquee span { display: inline-block; animation: scroll 25s linear infinite; }
+        @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+
+        /* FLOATING LOGO */
         .floating-logo {
             position: absolute;
             top: 20px;
@@ -141,13 +46,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: yellowgreen;
+            color: white;
             font-weight: bold;
             animation: spin 6s linear infinite;
             z-index: 50;
         }
 
-         @keyframes spin {
+        @keyframes spin {
             from {
                 transform: rotate(0deg);
             }
@@ -156,223 +61,296 @@
                 transform: rotate(360deg);
             }
         }
+        /* LAYOUT */
+        header { text-align: center; padding: 30px 10px; }
+        
+        .stage {
+            position: relative;
+            padding: 40px;
+            min-height: 1200px;
+            overflow-x: auto;
+        }
 
+        #svg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    .stage {
-      position: relative;
-      padding: 60px 120px;
-      overflow-x: auto;
-      min-height: 650px;
-    }
+        .layout {
+            display: flex;
+            gap: 100px;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+            width: max-content;
+        }
 
-    svg {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 200px;
+        }
 
-    /* LAYOUT */
-    .layout {
-      display: flex;
-      gap: 160px;
-      align-items: flex-start;
-    }
+        /* NODES */
+        .node {
+            background: var(--card);
+            border-radius: 8px;
+            padding: 10px 15px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
 
-    /* COLUMNS */
-    .column {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
+        .node.root {
+            background: linear-gradient(135deg, var(--accent), #4c1d95);
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
 
-    /* ROOT COLUMN */
-    .root-col {
-      position: relative;
-    }
+        .node.child {
+            cursor: pointer;
+            font-weight: 600;
+            border-left: 5px solid var(--accent);
+        }
 
-    /* NODES */
-    .node {
-      background: var(--card);
-      border-radius: 10px;
-      padding: 14px 22px;
-      min-width: 190px;
-      text-align: center;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, .08);
-      cursor: pointer;
-    }
+        .node.child:hover, .node.active-parent {
+            background: #f3f0ff;
+            border-color: #7c3aed;
+            transform: translateX(5px);
+        }
 
-    .node.root {
-      background: linear-gradient(135deg, var(--accent), #4c1d95);
-      color: #fff;
-      font-weight: 600;
-    }
+        .node.grand {
+            border-left: 4px solid #10b981;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
 
-    .node.child {
-      font-weight: 500;
-    }
+        .node.great {
+            background: #fdfdfd;
+            font-size: 0.8rem;
+            border: 1px dashed #d1d5db;
+            animation: slideIn 0.4s ease-out forwards;
+        }
 
-    .node.desc {
-      background: #fafafa;
-      font-size: .92rem;
-    }
-
-    .fade {
-      animation: fade .3s ease;
-    }
-
-    @keyframes fade {
-      from {
-        opacity: 0;
-        transform: translateX(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-  </style>
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    </style>
 </head>
-
 <body>
-  <!-- NAVBAR -->
-  <nav>
-    <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="./familyMemebers.html">Family Members</a></li>
-      <li><a href="./familyTree.html">Family Tree</a></li>
-      <li><a href="./familyHistory.html">Family History</a></li>
-      <li><a href="./gallery.html">Gallery</a></li>
-      <li><a href="./contact.html">Contact</a></li>
-    </ul>
-  </nav>
-  <!-- MARQUEE -->
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../otherHtmlFiles/familyMemebers.html">Family Members</a></li>
+            <li><a href="../otherHtmlFiles/familyTree.html">Family Tree</a></li>
+            <li><a href="../otherHtmlFiles/familyHistory.html">Family History</a></li>
+            <li><a href="../otherHtmlFiles/gallery.html">Gallery</a></li>
+            <li><a href="../otherHtmlFiles/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
     <div class="marquee">
-        <span>Welcome to The Ogundepo's Family Official Website — Unity • Heritage • Legacy</span>
+        <span>Unity • Heritage • Legacy — Official Genealogy of the Ogundepo Family</span>
     </div>
 
-  <header>
-    <div class="floating-logo"><img src="./images/newlogo.png" width="80px" alt=""></div>
-    <h1>Ogundepo Family Genealogy</h1>
-    <p>Strict parent-aligned SVG genealogy chart</p>
-  </header>
+    <header>
+        <h1>Ogundepo Family Genealogy</h1>
+        <p class="text-muted">Click a primary branch to expand the lineage</p>
+    </header><br>
+    <div class="floating-logo"><img src="../images/Logo.png" width="80px" alt=""></div>
 
-  <div class="stage" id="stage">
-    <svg id="svg"></svg>
+    <div class="stage" id="stage">
+        <svg id="svg"></svg>
 
-    <div class="layout">
-      <!-- ROOT -->
-      <div class="column root-col" id="rootCol">
-        <div class="node root" id="ogundepo">Ogundepo</div>
-      </div>
+        <div class="layout">
+            <div class="column" id="rootCol">
+                <div class="node root" id="ogundepo">OGUNDEPO</div>
+            </div>
 
-      <!-- CHILDREN -->
-      <div class="column" id="childrenCol"></div>
+            <div class="column" id="childrenCol"></div>
 
-      <!-- GRANDCHILDREN -->
-      <div class="column" id="grandCol"></div>
+            <div class="column" id="grandCol"></div>
 
-      <!-- GREAT GRANDCHILDREN -->
-      <div class="column" id="greatCol"></div>
+            <div class="column" id="greatCol"></div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const family = {
-      Oyeniyi: ["Oyeniyi I", "Oyeniyi II", "Oyeniyi III"],
-      Oyedele: ["Oyedele I", "Oyedele II", "Oyedele III"],
-      Ibitoye: ["Ibitoye I", "Ibitoye II", "Ibitoye III"],
-      Ebeloku: ["Ebeloku I", "Ebeloku II", "Ebeloku III"],
-      Bolarinwa: ["Bolarinwa I", "Bolarinwa II", "Bolarinwa III"],
-      Akinsanmi: ["Akinsanmi I", "Akinsanmi II", "Akinsanmi III"],
-      Oderinde: ["Oderinde I", "Oderinde II", "Oderinde III"],
-      Akinbiyi: ["Akinbiyi I", "Akinbiyi II", "Akinbiyi III"],
-      Eruola: ["Eruola I", "Eruola II", "Eruola III"]
-    };
+    <script>
+        // Mapping of Children to their Grandchildren
+        const familyData = {
+            "Oyeniyi": ["Oyeniyi I", "Oyeniyi II", "Oyeniyi III"],
+            "Oyedele": ["Oyedele I", "Oyedele II", "Oyedele III"],
+            "Ibitoye": ["Olatunji", "Adedeji", "Ogunyemi", "Ogunlade", "Oyefunke", "Taiye Labiyi", "Oyewumi", "Fakayode", "Oladiran", "olabode", "Emiola", "Segilola"],
+            "Ebeloku": ["Adeyemo", "Busari", "Tiamiyu", "Alfa Tijani"],
+            "Bolarinwa": ["Olaniyan", "Oyewole", "Lakin"],
+            "Akinsanmi": ["Akinsanmi I", "Akinsanmi II", "Akinsanmi III"],
+            "Oderinde": ["Lalude", "Oyedokun", "Sanusi Ogunwale"],
+            "Akinbiyi": ["Akinbiyi I", "Akinbiyi II", "Akinbiyi III"],
+            "Eruola": ["Olajide", "Oladeebo", "Olapoju", "Oladiran", "Ajibola"]
+        };
 
-    const stage = document.getElementById("stage");
-    const svg = document.getElementById("svg");
-    const root = document.getElementById("ogundepo");
-    const childrenCol = document.getElementById("childrenCol");
-    const grandCol = document.getElementById("grandCol");
-    const greatCol = document.getElementById("greatCol");
+        // YOUR DATA: Mapping Grandchildren to their Children (Great-Grandchildren)
+        const allGrandchildren = {
+            "Oyeniyi I": ["Oyeniyi I Child 1", "Oyeniyi I Child 2", "Oyeniyi I Child 3"],
+            "Oyeniyi II": ["Oyeniyi II Child 1", "Oyeniyi II Child 2", "Oyeniyi II Child 3"],
+            "Oyeniyi III": ["Oyeniyi III Child 1", "Oyeniyi III Child 2", "Oyeniyi III Child 3"],
+            "Oyedele I": ["Oyedele I Child 1", "Oyedele I Child 2", "Oyedele I Child 3"],
+            "Oyedele II": ["Oyedele II Child 1", "Oyedele II Child 2", "Oyedele II Child 3"],
+            "Oyedele III": ["Oyedele III Child 1", "Oyedele III Child 2", "Oyedele III Child 3"],
+            "Olatunji": ["Ibitoye I Child 1", "Ibitoye I Child 2", "Ibitoye I Child 3"],
+            "Adedeji": ["Ibitoye II Child 1", "Ibitoye II Child 2", "Ibitoye II Child 3"],
+            "Ogunyemi": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Ogunlade": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Oyefunke": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Taiye Labiyi": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Oyewumi": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Fakayode": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Oladiran": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Olabode": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Emiola": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Segilola": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Adeyemo": ["Ebeloku I Child 1", "Ebeloku I Child 2", "Ebeloku I Child 3"],
+            "Busari": ["Ebeloku II Child 1", "Ebeloku II Child 2", "Ebeloku II Child 3"],
+            "Tiamiyu": ["Ebeloku III Child 1", "Ebeloku III Child 2", "Ebeloku III Child 3"],
+            "Alfa Tijani": ["Ebeloku III Child 1", "Ebeloku III Child 2", "Ebeloku III Child 3"],
+            "Olaniyan": ["Bolarinwa I Child 1", "Bolarinwa I Child 2", "Bolarinwa I Child 3"],
+            "Oyewole": ["Bolarinwa II Child 1", "Bolarinwa II Child 2", "Bolarinwa II Child 3"],
+            "Lakin": ["Bolarinwa III Child 1", "Bolarinwa III Child 2", "Bolarinwa III Child 3"],
+            "Akinsanmi I": ["Akinsanmi I Child 1", "Akinsanmi I Child 2", "Akinsanmi I Child 3"],
+            "Akinsanmi II": ["Akinsanmi II Child 1", "Akinsanmi II Child 2", "Akinsanmi II Child 3"],
+            "Akinsanmi III": ["Akinsanmi III Child 1", "Akinsanmi III Child 2", "Akinsanmi III Child 3"],
+            "Lalude": ["Olasupo", "Lamidi (Baba n'pota)", "Soladoye"],
+            "Oyedokun": ["Oladejo", "Abidoye", "Oyedokun Child 3"],
+            "Sanusi Ogunwale": ["Sanusi Ogunwale Child 1", "Sanusi Ogunwale Child 2", "Sanusi Ogunwale Child 3"],
+            "Akinbiyi I": ["Akinbiyi I Child 1", "Akinbiyi I Child 2", "Akinbiyi I Child 3"],
+            "Akinbiyi II": ["Akinbiyi II Child 1", "Akinbiyi II Child 2", "Akinbiyi II Child 3"],
+            "Akinbiyi III": ["Akinbiyi III Child 1", "Akinbiyi III Child 2", "Akinbiyi III Child 3"],
+            "Olajide": ["Eruola I Child 1", "Eruola I Child 2", "Eruola I Child 3"],
+            "Oladeebo": ["Eruola II Child 1", "Eruola II Child 2", "Eruola II Child 3"],
+            "Olapoju": ["Eruola III Child 1", "Eruola III Child 2", "Eruola III Child 3"],
+            "Oladiran": ["Eruola III Child 1", "Eruola III Child 2", "Eruola III Child 3"],
+            "Ajibola": ["Eruola III Child 1", "Eruola III Child 2", "Eruola III Child 3"]
+        };
 
-    function greatKids(name) { return [`${name} A`, `${name} B`]; }
+        const childrenCol = document.getElementById("childrenCol");
+        const grandCol = document.getElementById("grandCol");
+        const greatCol = document.getElementById("greatCol");
+        const rootNode = document.getElementById("ogundepo");
+        const svg = document.getElementById("svg");
+        let activeChildName = null;
 
-    function line(from, to) {
-      const a = from.getBoundingClientRect();
-      const b = to.getBoundingClientRect();
-      const s = stage.getBoundingClientRect();
+        function init() {
+            // Generate the 9 Children
+            Object.keys(familyData).forEach(name => {
+                const el = document.createElement("div");
+                el.className = "node child";
+                el.id = `child-${name.replace(/\s/g, '')}`;
+                el.textContent = name;
+                el.onclick = () => selectBranch(name);
+                childrenCol.appendChild(el);
+            });
+            
+            // Initial positioning & first draw
+            setTimeout(() => {
+                const midChild = document.getElementById("child-Bolarinwa");
+                document.getElementById("rootCol").style.marginTop = (midChild.offsetTop) + "px";
+                drawLines();
+            }, 300);
+        }
 
-      const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      l.setAttribute("x1", a.right - s.left);
-      l.setAttribute("y1", a.top + a.height / 2 - s.top);
-      l.setAttribute("x2", b.left - s.left);
-      l.setAttribute("y2", b.top + b.height / 2 - s.top);
-      l.setAttribute("stroke", "#9ca3af");
-      l.setAttribute("stroke-width", "2");
-      svg.appendChild(l);
-    }
+        function selectBranch(name) {
+            activeChildName = name;
+            
+            // Highlight parent
+            document.querySelectorAll(".node.child").forEach(n => n.classList.remove("active-parent"));
+            document.getElementById(`child-${name.replace(/\s/g, '')}`).classList.add("active-parent");
 
-    function redraw() {
-      svg.innerHTML = "";
-      svg.setAttribute("width", stage.scrollWidth);
-      svg.setAttribute("height", stage.scrollHeight);
+            // Clear columns
+            grandCol.innerHTML = "";
+            greatCol.innerHTML = "";
 
-      document.querySelectorAll(".node.child").forEach(n => line(root, n));
-      document.querySelectorAll(".node.grand").forEach(n => line(n.dataset.parent, n));
-      document.querySelectorAll(".node.great").forEach(n => line(n.dataset.parent, n));
-    }
+            // Populate Grandchildren based on the Child clicked
+            familyData[name].forEach((gcName, index) => {
+                const gNode = document.createElement("div");
+                gNode.className = "node grand";
+                const gcSafeId = `gc-${gcName.replace(/\s/g, '')}`; // ID without spaces
+                gNode.id = gcSafeId;
+                gNode.textContent = gcName;
+                grandCol.appendChild(gNode);
 
-    let bolarinwaNode = null;
+                // Populate Great-Grandchildren based on the Grandchild name
+                // This looks into your 'allGrandchildren' object
+                if (allGrandchildren[gcName]) {
+                    allGrandchildren[gcName].forEach(ggcName => {
+                        const ggNode = document.createElement("div");
+                        ggNode.className = "node great";
+                        ggNode.textContent = ggcName;
+                        ggNode.setAttribute("data-parent-link", gcSafeId);
+                        greatCol.appendChild(ggNode);
+                    });
+                }
+            });
 
-    Object.keys(family).forEach(name => {
-      const n = document.createElement("div");
-      n.className = "node child";
-      n.textContent = name;
-      childrenCol.appendChild(n);
+            setTimeout(drawLines, 50);
+        }
 
-      if (name === "Bolarinwa") bolarinwaNode = n;
+        function drawLines() {
+            svg.innerHTML = "";
+            const sRect = document.getElementById("stage").getBoundingClientRect();
 
-      n.onclick = () => {
-        grandCol.innerHTML = "";
-        greatCol.innerHTML = "";
+            // 1. Root to all Children
+            document.querySelectorAll(".node.child").forEach(child => {
+                drawLine(rootNode, child, "#9ca3af", 1.5);
+            });
 
-        family[name].forEach(gc => {
-          const g = document.createElement("div");
-          g.className = "node desc grand fade";
-          g.textContent = gc;
-          g.dataset.parent = n;
-          grandCol.appendChild(g);
+            if (activeChildName) {
+                // 2. Selected Child to their Grandchildren
+                const parentEl = document.getElementById(`child-${activeChildName.replace(/\s/g, '')}`);
+                document.querySelectorAll(".node.grand").forEach(gc => {
+                    drawLine(parentEl, gc, "var(--path-color)", 2);
+                });
 
-          greatKids(gc).forEach(gg => {
-            const ggN = document.createElement("div");
-            ggN.className = "node desc great fade";
-            ggN.textContent = gg;
-            ggN.dataset.parent = g;
-            greatCol.appendChild(ggN);
-          });
-        });
+                // 3. Grandchildren to Great-Grandchildren
+                document.querySelectorAll(".node.great").forEach(ggc => {
+                    const parentId = ggc.getAttribute("data-parent-link");
+                    const parentNode = document.getElementById(parentId);
+                    if (parentNode) {
+                        drawLine(parentNode, ggc, "#10b981", 1);
+                    }
+                });
+            }
+        }
 
-        setTimeout(redraw, 20);
-      };
-    });
+        function drawLine(el1, el2, color, width) {
+            const r1 = el1.getBoundingClientRect();
+            const r2 = el2.getBoundingClientRect();
+            const s = document.getElementById("stage").getBoundingClientRect();
 
-    window.onload = () => {
-      // Align Ogundepo vertically with Bolarinwa
-      const r = bolarinwaNode.getBoundingClientRect();
-      const rootCol = document.getElementById("rootCol");
-      const stageRect = stage.getBoundingClientRect();
-      rootCol.style.marginTop = (r.top - stageRect.top) + "px";
-      redraw();
-    };
+            const x1 = r1.right - s.left;
+            const y1 = (r1.top + r1.height / 2) - s.top;
+            const x2 = r2.left - s.left;
+            const y2 = (r2.top + r2.height / 2) - s.top;
 
-    window.onresize = redraw;
-  </script>
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            const midX = (x1 + x2) / 2;
+            const d = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
+            
+            path.setAttribute("d", d);
+            path.setAttribute("stroke", color);
+            path.setAttribute("stroke-width", width);
+            path.setAttribute("fill", "none");
+            svg.appendChild(path);
+        }
 
+        window.addEventListener("resize", drawLines);
+        window.onload = init;
+    </script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
 </html>

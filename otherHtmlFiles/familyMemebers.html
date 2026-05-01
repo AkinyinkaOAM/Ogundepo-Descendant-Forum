@@ -124,10 +124,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: yellowgreen;
+            color: white;
             font-weight: bold;
             animation: spin 6s linear infinite;
             z-index: 50;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
           
         .pict {
@@ -173,9 +183,9 @@
     <!-- MARQUEE -->
     <div class="marquee"> 
         <span>Welcome to The Ogundepo's Family Official Website — Unity • Heritage • Legacy</span>
-    </div>
+    </div> 
 
-    <div class="floating-logo"><img src="./images/newlogo.png" width="80px" alt=""></div>
+    <div class="floating-logo"><img src="../images/logo.png" width="80px" alt=""></div>
     <ul class="pict">
         <br><br><br>
         <li class="member">

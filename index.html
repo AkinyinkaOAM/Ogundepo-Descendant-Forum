@@ -122,94 +122,87 @@
             }
         }
 
-        /* CAROUSEL */
-        .carousel-container {
+        /* SCROLL CAROUSEL */
+        .scroll-carousel-wrapper {
             position: relative;
             width: 100%;
             height: 350px;
             overflow: hidden;
         }
 
-        .carousel {
+        .scroll-carousel {
             display: flex;
-            width: 300%;
             height: 100%;
-            transition: transform 1s ease;
+            overflow-x: auto;
+            scroll-behavior: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
-
-        .fa-less-than {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 50px;
-            color: white;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 100;
-            border: 2px solid orangered;
+        .scroll-carousel::-webkit-scrollbar {
+            display: none;
         }
 
-        .fa-greater-than {
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            font-size: 50px;
-            color: yellow;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1000;
-            border: 2px solid orangered;
-        }
-
-        .slide {
-            width: 100%;
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
             flex-shrink: 0;
-            background-size: cover;
-            background-position: center;
         }
 
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-        h3 {
+        .carousel-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
             color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+            z-index: 10;
+        }
+
+        .carousel-caption h3 {
+            margin: 0;
             font-size: 40px;
             font-weight: bold;
         }
 
-        .slide:nth-child(1) {
-            background: #ccc;
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: 2px solid orangered;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: background 0.3s;
         }
 
-        .slide:nth-child(2) {
-            background: #999;
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
         }
 
-        .slide:nth-child(3) {
-            background: #777;
+        .carousel-btn.prev {
+            left: 20px;
         }
 
-        .slide {
-            width: 100%;
-            flex-shrink: 0;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .slide:nth-child(1) {
-            background: #ccc;
-        }
-
-        .slide:nth-child(2) {
-            background: #999;
-        }
-
-        .slide:nth-child(3) {
-            background: #777;
+        .carousel-btn.next {
+            right: 20px;
         }
 
         /* FLOATING LOGO */
@@ -316,48 +309,87 @@
         <span>Welcome to The Ogundepo's Family Official Website — Unity • Heritage • Legacy</span>
     </div>
 
-    <!-- CAROUSEL (Bootstrap) -->
-    <div id="carouselExampleDark" class="carousel carousel-dark slide">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="floating-logo"><img src="./images/newlogo.png" width="80px" alt=""></div>
-            <div class="carousel-item active" data-bs-interval="10000">
-                <img src="./images/Palace.png" class="d-block w-100" width="100%" height="30%">
-                <div class="carousel-caption d-none d-md-block">
+    <!-- SCROLL CAROUSEL -->
+    <div class="scroll-carousel-wrapper">
+        <div class="floating-logo"><img src="./images/Logo.png" width="80px" alt=""></div>
+        <div class="scroll-carousel" id="scrollCarousel">
+            <!-- Original slides -->
+            <div class="carousel-slide">
+                <img src="./images/Palace.png" alt="Ogundepo's Palace">
+                <div class="carousel-caption">
                     <h3>Ogundepo's Palace</h3>
-                    <!-- <p>Some representative placeholder content for the first slide.</p> -->
                 </div>
             </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <img src="./images/Ai mapo hall.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
+            <div class="carousel-slide">
+                <img src="./images/Ai mapo hall.png" alt="Mapo Hall">
+                <div class="carousel-caption">
                     <h3>Mapo Hall</h3>
-                    <!-- <p>Some representative placeholder content for the second slide.</p> -->
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="./images/Olubadan Palace.webp" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Olubadan Palace</h3>
-                    <!-- <p>Some representative placeholder content for the third slide.</p> -->
+            <div class="carousel-slide">
+                <img src="./images/Ibadan day 2026_0023.jpeg" alt="Ibadan Cultural Festival 2026">
+                <div class="carousel-caption">
+                    <h3>Ibadan Cultural Festival 2026</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="./images/Ibadan day 2026_005.jpeg" alt="Ibadan Cultural Festival 2026">
+                <div class="carousel-caption">
+                    <h3>Ibadan Cultural Festival 2026</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="./images/Ibadan day 2026_0016.jpeg" alt="Ibadan Cultural Festival 2026">
+                <div class="carousel-caption">
+                    <h3>Ibadan Cultural Festival 2026</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="./images/Ibadan day 2026_0017.jpeg" alt="Ibadan Cultural Festival 2026">
+                <div class="carousel-caption">
+                    <h3>Ibadan Cultural Festival 2026</h3>
+                </div>
+            </div>
+            <!-- Duplicated slides for seamless loop -->
+            <div class="carousel-slide">
+                <img src="./images/Palace.png" alt="Ogundepo's Palace">
+                <div class="carousel-caption">
+                    <h3>Ogundepo's Palace</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="./images/Ai mapo hall.png" alt="Mapo Hall">
+                <div class="carousel-caption">
+                    <h3>Mapo Hall</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="./images/Ibadan day 2026_0016.jpeg" alt="Ibadan Cultural Festival 2026">
+                <div class="carousel-caption">
+                    <h3>Ibadan Cultural Festival 2026</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="./images/Ibadan day 2026_005.jpeg" alt="Ibadan Cultural Festival">
+                <div class="carousel-caption">
+                    <h3>Ibadan Cultural Festival 2026</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="./images/Ibadan day 2026_0016.jpeg" alt="Ibadan Cultural Festival">
+                <div class="carousel-caption">
+                    <h3>Ibadan Cultural Festival 2026</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="./images/Ibadan day 2026_0017.jpeg" alt="Ibadan Cultural Festival">
+                <div class="carousel-caption">
+                    <h3>Ibadan Cultural Festival 2026</h3>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+        <button class="carousel-btn next" id="nextBtn">&#10095;</button>
     </div>
 
 
@@ -401,31 +433,31 @@
                 <p>Baale Ogbere Idi-Osan.</p>
             </div>
             <div class="card">
+                <img src="./images/Baale Oderinde.jpeg" />
+                <h4>Mr Abideen Oladejo Oderinde Ogundepo</h4>
+                <p>Baale Oderinde.</p>
+            </div>
+            <div class="card">
+                <img src="./images/iyalode oderinde no-bg.jpeg" />
+                <h4>Alhaja Jemilat Bakare Oderinde Ogundepo</h4>
+                <p>Iyalode Oderinde.</p>
+            </div>
+
+            <div class="card">
+                <img src="./images/iyalode ogundepo white bg.png" />
+                <h4>Mrs Omotayo Adebisi Ibitoye Ogundepo</h4>
+                <p>Iyalode Ogundepo.</p>
+            </div>
+            <div class="card">
+                <img src="./images/secretary.png" />
+                <h4>Mr Ibrahim Oladejo Oderinde Ogundepo</h4>
+                <p>Secretary Ogundepo.</p>
+            </div> 
+
+            <div class="card">
                 <img src="./images/ewa wth bg.png" />
-                <h4>Jelili Olasupo Oderinde Ogundepo</h4>
+                <h4>Mr Jeleel Olasupo Oderinde Ogundepo</h4>
                 <p>Ekerin Baale Idi-Osan.</p>
-            </div>
-            <div class="card">
-                <img src="./images/iyalode oderinde no-bg.jpeg" />
-                <h4>Alhaja Jemilat Bakare Oderinde Ogundepo</h4>
-                <p>Iyalode Oderinde.</p>
-            </div>
-
-            <div class="card">
-                <img src="./images/iyalode ogundepo white bg.png" />
-                <h4>Mrs Omotayo Adebisi Ibitoye Ogundepo</h4>
-                <p>Iyalode Ogundepo.</p>
-            </div>
-            <div class="card">
-                <img src="./images/iyalode ogundepo white bg.png" />
-                <h4>Mrs Omotayo Adebisi Ibitoye Ogundepo</h4>
-                <p>Iyalode Ogundepo.</p>
-            </div>
-
-            <div class="card">
-                <img src="./images/iyalode oderinde no-bg.jpeg" />
-                <h4>Alhaja Jemilat Bakare Oderinde Ogundepo</h4>
-                <p>Iyalode Oderinde.</p>
             </div>
 
 
@@ -437,26 +469,37 @@
     </footer>
 
     <script>
-        let index = 0;
-        const carousel = document.getElementById('carousel');
+        (function() {
+            const carousel = document.getElementById('scrollCarousel');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const totalOriginal = slides.length / 2;
+            let scrollInterval;
+            let isHovered = false;
 
-        setInterval(() => {
-            index = (index + 1) % 3;
-            carousel.style.transform = `translateX(-${index * 100}%)`;
-        }, 4000);
+            function startAutoScroll() {
+                scrollInterval = setInterval(() => {
+                    if (!isHovered) {
+                        carousel.scrollLeft += 1;
+                        if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
+                            carousel.scrollLeft = 0;
+                        }
+                    }
+                }, 20);
+            }
 
-        function nextSlide() {
-            index = (index + 1) % totalSlides;
-            updateCarousel();
-        }
+            carousel.addEventListener('mouseenter', () => { isHovered = true; });
+            carousel.addEventListener('mouseleave', () => { isHovered = false; });
 
+            document.getElementById('prevBtn').addEventListener('click', () => {
+                carousel.scrollBy({ left: -carousel.offsetWidth, behavior: 'smooth' });
+            });
 
-        function prevSlide() {
-            index = (index - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        }
+            document.getElementById('nextBtn').addEventListener('click', () => {
+                carousel.scrollBy({ left: carousel.offsetWidth, behavior: 'smooth' });
+            });
 
-        setInterval(nextSlide, 4000);
+            startAutoScroll();
+        })();
     </script>
 
 </body>
