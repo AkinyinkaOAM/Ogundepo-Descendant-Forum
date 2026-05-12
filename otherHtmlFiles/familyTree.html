@@ -133,7 +133,12 @@
             position: relative;
             z-index: 1;
             width: max-content;
+            /* Keep columns from shifting vertically */
+            flex-wrap: nowrap;
         }
+
+
+
 
         /* Group wrappers so great-grandchildren can be positioned directly in front of their grandparent */
         .great-group {
@@ -170,6 +175,16 @@
             position: relative;
             z-index: 2;
         }
+
+        /* Keep node sizes consistent with the previous layout */
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 200px;
+            height: max-content;
+        }
+
 
         .node.root {
             background: linear-gradient(135deg, var(--accent), #4c1d95);
@@ -262,13 +277,13 @@
         const familyData = {
             "Oyeniyi": ["Oyeniyi I", "Oyeniyi II", "Oyeniyi III"],
             "Oyedele": ["Oyedele I", "Oyedele II", "Oyedele III"],
-            "Ibitoye": ["Olatunji", "Adedeji", "Ogunyemi", "Jose", "Ogunlade", "Esuola", "Oyefunke", "Taiye Labiyi", "Oyewumi", "Fakayode", "Oladiran", "olabode", "Emiola", "Segilola"],
+            "Ibitoye": ["Olatunji", "Adedeji", "Ogunyemi", "Jose", "Ogunlade", "Esuola", "Oyefunke", "Taiye Labiyi", "Oyewumi", "Fakayode", "Oladiran Ibitoye", "olabode", "Emiola", "Segilola"],
             "Ebeloku": ["Adeyemo", "Busari", "Tiamiyu", "Alfa Tijani"],
             "Bolarinwa": ["Olaniyan", "Oyewole", "Lakin"],
             "Akinsanmi": ["Akinsanmi I", "Akinsanmi II", "Akinsanmi III"],
             "Oderinde": ["Lalude", "Oyedokun", "Sanusi Ogunwale"],
             "Akinbiyi": ["Akinbiyi I", "Akinbiyi II", "Akinbiyi III"],
-            "Eruola": ["Olajide", "Oladeebo", "Olapoju", "Oladiran", "Ajibola"]
+            "Eruola": ["Olajide", "Oladeebo", "Olapoju", "Oladiran Eruola", "Ajibola"]
         };
 
         // YOUR DATA: Mapping Grandchildren to their Children (Great-Grandchildren)
@@ -289,10 +304,10 @@
             "Taiye Labiyi": ["Saka Oyetunji Taiye Labiyi Ibitoye", "Okanola Taiye Labiyi Ibitoye", "Dauda Taiye LabiyiIbitoye"],
             "Oyewumi": ["Dimeji Oyewumi Ibitoye", "Abidoye Oyewumi Ibitoye", "Popoola Oyewumi Ibitoye"],
             "Fakayode": ["Fakayode Ibitoye Child 1", "Fakayode Ibitoye Child 2", "Fakayode Ibitoye Child 3"],
-            "Oladiran": ["Taiye Oladiran Ibitoye"],
+            "Oladiran Ibitoye": ["Taiye Oladiran Ibitoye", "Oladiran Ibitoye Child 2", "Oladiran Ibitoye Child 3"],
             "Olabode": ["Asimiyu Olabode Ibitoye", "Tirimisiyu Olabode Ibitoye"],
             "Emiola": ["Misbau Emiola Ibitoye", "Sherifat Emiola Ibitoye"],
-            "Segilola": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Segilola": ["Segilola Ibitoye child1", " Segilola Ibitoye Child 2", "Segilola Ibitoye Child 3"],
             "Adeyemo": ["Ebeloku I Child 1", "Ebeloku I Child 2", "Ebeloku I Child 3"],
             "Busari": ["Ebeloku II Child 1", "Ebeloku II Child 2", "Ebeloku II Child 3"],
             "Tiamiyu": ["Ebeloku III Child 1", "Ebeloku III Child 2", "Ebeloku III Child 3"],
@@ -303,8 +318,8 @@
             "Akinsanmi I": ["Akinsanmi I Child 1", "Akinsanmi I Child 2", "Akinsanmi I Child 3"],
             "Akinsanmi II": ["Akinsanmi II Child 1", "Akinsanmi II Child 2", "Akinsanmi II Child 3"],
             "Akinsanmi III": ["Akinsanmi III Child 1", "Akinsanmi III Child 2", "Akinsanmi III Child 3"],
-            "Lalude": ["Lalude-Olasupo", "Lalude-Lamidi (Baba n'pota)", "Lalude-Soladoye"],
-            "Oyedokun": ["Oyedokun-Oladejo", "Oyedokun-Abidoye", "Oyedokun-Fali"],
+            "Lalude": ["Olasupo Lalude", "Lamidi Lalude (Baba n'pota)", "Soladoye Lalude"],
+            "Oyedokun": ["Oladejo Oyedokun", "Abidoye Oyedokun", "Falilat Oyedokun"],
             "Sanusi Ogunwale": ["Sanusi Ogunwale Child 1", "Sanusi Ogunwale Child 2", "Sanusi Ogunwale Child 3"],
             "Akinbiyi I": ["Akinbiyi I Child 1", "Akinbiyi I Child 2", "Akinbiyi I Child 3"],
             "Akinbiyi II": ["Akinbiyi II Child 1", "Akinbiyi II Child 2", "Akinbiyi II Child 3"],
@@ -312,7 +327,7 @@
             "Olajide": ["Eruola I Child 1", "Eruola I Child 2", "Eruola I Child 3"],
             "Oladeebo": ["Eruola II Child 1", "Eruola II Child 2", "Eruola II Child 3"],
             "Olapoju": ["Eruola III Child 1", "Eruola III Child 2", "Eruola III Child 3"],
-            "Oladiran": ["Eruola III Child 1", "Eruola III Child 2", "Eruola III Child 3"],
+            "Oladiran Eruola": ["Eruola III Child 1", "Eruola III Child 2", "Eruola III Child 3"],
             "Ajibola": ["Eruola III Child 1", "Eruola III Child 2", "Eruola III Child 3"]
         };
 
@@ -334,7 +349,16 @@
             "Alimi Ogunyemi Ibitoye": ["Oluwasegun Alimi Ogunyemi Ibitoye", "Olumide Alimi Ogunyemi Ibitoye", "Tunde Alimi Ogunyemi Ibitoye"],
             "Sherifat Ogunyemi Ibitoye": ["Sherifat Ogunyemi Ibitoye Child 1", "Sherifat Ogunyemi Ibitoye Child 2", "Sherifat Ogunyemi Ibitoye Child 3"],
             "Aminat Ogunyemi Ibitoye": ["Aminat Ogunyemi Ibitoye Child 1", "Aminat Ogunyemi Ibitoye Child 2", "Aminat Ogunyemi Ibitoye Child 3"],
-            "Morufu Ogunyemi Ibitoye": ["Morufu Ogunyemi Ibitoye Child 1", "Morufu Ogunyemi Ibitoye Child 2", "Morufu Ogunyemi Ibitoye Child 3"]
+            "Morufu Ogunyemi Ibitoye": ["Morufu Ogunyemi Ibitoye Child 1", "Morufu Ogunyemi Ibitoye Child 2", "Morufu Ogunyemi Ibitoye Child 3"],
+            "Olasupo Lalude": ["Olasupo Lalude Child 1", "Olasupo Lalude Child 2", "Olasupo Lalude Child 3"],
+            "Lamidi Lalude (Baba n'pota)": ["Lamidi Lalude Child 1", "Lamidi Lalude Child 2", "Lamidi Lalude Child 3"],
+            "Soladoye Lalude": ["Soladoye Lalude Child 1", "Soladoye Lalude Child 2", "Soladoye Lalude Child 3"],
+            "Oladejo Oyedokun": ["Bolatito Oladejo Oyedokun", "Musiliat Oladejo Oyedokun", "Dauda Oladejo Oyedokun", "Moriliat Oladejo Oyedokun", "kabiru Oladejo Oyedokun", "Sharafa Oladejo Oyedokun", "Kolawole Oladejo Oyedokun", "Omolara Oladejo Oyedokun", "Salewa Oladejo Oyedokun"],
+            "Abidoye Oyedokun": ["Adijat Abidoye Oyedokun", "Funke Abidoye Oyedokun", "waidi Abidoye Oyedokun", "Mujidat Abidoye Oyedokun", "safurat Abidoye Oyedokun", "sadiat Abidoye Oyedokun", "Ganiyat Abidoye Oyedokun", "shakirat Abidoye Oyedokun", "Omoyemi Abidoye Oyedokun"],
+            "Falilat Oyedokun": ["Falilat Oyedokun Child 1", "Falilat Oyedokun Child 2", "Falilat Oyedokun Child 3"],
+            "Sanusi Ogunwale Child 1": ["Sanusi Ogunwale Child 1.1", "Sanusi Ogunwale Child 1.2", "Sanusi Ogunwale Child 1.3"],
+            "Sanusi Ogunwale Child 2": ["Sanusi Ogunwale Child 2.1", "Sanusi Ogunwale Child 2.2", "Sanusi Ogunwale Child 2.3"],
+            "Sanusi Ogunwale Child 3": ["Sanusi Ogunwale Child 3.1", "Sanusi Ogunwale Child 3.2", "Sanusi Ogunwale Child 3.3"],
 
         };
 
@@ -369,6 +393,8 @@
 
         function selectBranch(name) {
             activeChildName = name;
+
+
 
             // Highlight parent
             document.querySelectorAll(".node.child").forEach(n => n.classList.remove("active-parent"));
@@ -416,6 +442,7 @@
 
 
 
+            // Ensure base OGUNDEPO → Children lines always appear first
             setTimeout(drawLines, 50);
         }
 
@@ -428,8 +455,10 @@
             const childEl = document.getElementById(`child-${activeChildName.replace(/\s/g, '')}`);
             if (!childEl) return;
 
-            // Root -> selected child
-            drawLine(rootNode, childEl, "#9ca3af", 1.5);
+            // Root -> all children (so it always fully shows the OGUNDEPO → 9 children lines)
+            document.querySelectorAll(".node.child").forEach(childNode => {
+                drawLine(rootNode, childNode, "#9ca3af", 1.5);
+            });
 
             // selected child -> its grandchildren
             document.querySelectorAll(".node.grand").forEach(gc => {
