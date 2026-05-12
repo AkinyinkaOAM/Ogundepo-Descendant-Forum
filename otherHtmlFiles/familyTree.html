@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Ogundepo Family Genealogy</title>
@@ -25,14 +26,54 @@
         }
 
         /* NAVBAR & MARQUEE */
-        nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); z-index: 1050; }
-        nav ul { list-style: none; display: flex; justify-content: center; padding: 12px; margin: 0; }
-        nav ul li { margin: 0 15px; }
-        nav ul li a { color: white; text-decoration: none; font-weight: 600; }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            z-index: 1050;
+        }
 
-        .marquee { background: #69BEEB; padding: 8px; overflow: hidden; white-space: nowrap; font-weight: 500; }
-        .marquee span { display: inline-block; animation: scroll 25s linear infinite; }
-        @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 12px;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .marquee {
+            background: #69BEEB;
+            padding: 8px;
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 25s linear infinite;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
 
         /* FLOATING LOGO */
         .floating-logo {
@@ -61,9 +102,13 @@
                 transform: rotate(360deg);
             }
         }
+
         /* LAYOUT */
-        header { text-align: center; padding: 30px 10px; }
-        
+        header {
+            text-align: center;
+            padding: 30px 10px;
+        }
+
         .stage {
             position: relative;
             padding: 40px;
@@ -73,8 +118,10 @@
 
         #svg {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 0;
         }
@@ -87,6 +134,22 @@
             z-index: 1;
             width: max-content;
         }
+
+        /* Group wrappers so great-grandchildren can be positioned directly in front of their grandparent */
+        .great-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 200px;
+        }
+
+        .great-col-inner {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
 
         .column {
             display: flex;
@@ -121,7 +184,8 @@
             border-left: 5px solid var(--accent);
         }
 
-        .node.child:hover, .node.active-parent {
+        .node.child:hover,
+        .node.active-parent {
             background: #f3f0ff;
             border-color: #7c3aed;
             transform: translateX(5px);
@@ -140,9 +204,20 @@
             animation: slideIn 0.4s ease-out forwards;
         }
 
-        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -187,7 +262,7 @@
         const familyData = {
             "Oyeniyi": ["Oyeniyi I", "Oyeniyi II", "Oyeniyi III"],
             "Oyedele": ["Oyedele I", "Oyedele II", "Oyedele III"],
-            "Ibitoye": ["Olatunji", "Adedeji", "Ogunyemi", "Ogunlade", "Oyefunke", "Taiye Labiyi", "Oyewumi", "Fakayode", "Oladiran", "olabode", "Emiola", "Segilola"],
+            "Ibitoye": ["Olatunji", "Adedeji", "Ogunyemi", "Jose", "Ogunlade", "Esuola", "Oyefunke", "Taiye Labiyi", "Oyewumi", "Fakayode", "Oladiran", "olabode", "Emiola", "Segilola"],
             "Ebeloku": ["Adeyemo", "Busari", "Tiamiyu", "Alfa Tijani"],
             "Bolarinwa": ["Olaniyan", "Oyewole", "Lakin"],
             "Akinsanmi": ["Akinsanmi I", "Akinsanmi II", "Akinsanmi III"],
@@ -204,17 +279,19 @@
             "Oyedele I": ["Oyedele I Child 1", "Oyedele I Child 2", "Oyedele I Child 3"],
             "Oyedele II": ["Oyedele II Child 1", "Oyedele II Child 2", "Oyedele II Child 3"],
             "Oyedele III": ["Oyedele III Child 1", "Oyedele III Child 2", "Oyedele III Child 3"],
-            "Olatunji": ["Ibitoye I Child 1", "Ibitoye I Child 2", "Ibitoye I Child 3"],
-            "Adedeji": ["Ibitoye II Child 1", "Ibitoye II Child 2", "Ibitoye II Child 3"],
-            "Ogunyemi": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
-            "Ogunlade": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
-            "Oyefunke": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
-            "Taiye Labiyi": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
-            "Oyewumi": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
-            "Fakayode": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
-            "Oladiran": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
-            "Olabode": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
-            "Emiola": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
+            "Olatunji": ["Raimi Olatunji Ibitoye", "Aisha Olatunji Ibitoye", "Amuda Olatunji Ibitoye"],
+            "Adedeji": ["Raufu Iyiola Adedeji Ibitoye", "Sariyu Ladoyin Adedeji Ibitoye", "Latundun Adedeji Ibitoye", "Olaniyi Yekin Adedeji Ibitoye", "Omotanbaje Adedeji Ibitoye"],
+            "Ogunyemi": ["Olalounpe Ogunyemi Ibitoye", "Mosunmola Ogunyemi Ibitoye", "Monilola Ogunyemi Ibitoye", "Sariyu Ogunyemi Ibitoye", "Lasisi Ogunyemi Ibitoye", "Amusa Ogunyemi Ibitoye", "Jimoh Ogunyemi Ibitoye", "Alimi Ogunyemi Ibitoye", "Sherifat Ogunyemi Ibitoye", "Aminat Ogunyemi Ibitoye", "Morufu Ogunyemi Ibitoye"],
+            "Jose": ["Jose Ibitoye Child 1", "Jose Ibitoye Child 2", "Jose Ibitoye Child 3"],
+            "Ogunlade": ["Mojoyin Ogunlade Ibitoye", "Oyenike Ogunlade Ibitoye", "Ganiyu Akinade Ogunlade Ibitoye", "Ayisat Ogunlade Ibitoye", "Issa Olaleke Ogunlade Ibitoye", "Moboye Ogunlade Ibitoye", "Olatinwo Ogunlade Ibitoye", "Muri Ogunlade Ibitoye", "Idowu Ogunlade Ibitoye", "Dauda Ogunlade Ibitoye", "Adijat Ogunlade Ibitoye", "Moshood Soladoye Ogunlade Ibitoye", "Rasaki Ogunlade Ibitoye", "Oseni Taiwo Ogunlade Ibitoye", "Kehinde Ogunlade Ibitoye"],
+            "Esuola": ["Esuola Ibitoye Child 1", "Esuola Ibitoye Child 2", "Esuola Ibitoye Child 3"],
+            "Oyefunke": ["Toyosi Oyefunke Ibitoye", "Olawepo Oyefunke Ibitoye", "Bolupe Oyefunke Ibitoye"],
+            "Taiye Labiyi": ["Saka Oyetunji Taiye Labiyi Ibitoye", "Okanola Taiye Labiyi Ibitoye", "Dauda Taiye LabiyiIbitoye"],
+            "Oyewumi": ["Dimeji Oyewumi Ibitoye", "Abidoye Oyewumi Ibitoye", "Popoola Oyewumi Ibitoye"],
+            "Fakayode": ["Fakayode Ibitoye Child 1", "Fakayode Ibitoye Child 2", "Fakayode Ibitoye Child 3"],
+            "Oladiran": ["Taiye Oladiran Ibitoye"],
+            "Olabode": ["Asimiyu Olabode Ibitoye", "Tirimisiyu Olabode Ibitoye"],
+            "Emiola": ["Misbau Emiola Ibitoye", "Sherifat Emiola Ibitoye"],
             "Segilola": ["Ibitoye III Child 1", "Ibitoye III Child 2", "Ibitoye III Child 3"],
             "Adeyemo": ["Ebeloku I Child 1", "Ebeloku I Child 2", "Ebeloku I Child 3"],
             "Busari": ["Ebeloku II Child 1", "Ebeloku II Child 2", "Ebeloku II Child 3"],
@@ -239,12 +316,37 @@
             "Ajibola": ["Eruola III Child 1", "Eruola III Child 2", "Eruola III Child 3"]
         };
 
+        const greatGrandChildren = {
+            "Raimi Olatunji Ibitoye": ["Simbi Raimi Olatunji Ibitoye", "Nureni Raimi Olatunji Ibitoye",],
+            "Aisha Olatunji Ibitoye": ["-- Aisha Olatunji Ibitoye", "--Aisha Olatunji Ibitoye"],
+            "Amuda Olatunji Ibitoye": ["-- Amuda Olatunji Ibitoye", "-- Amuda Olatunji Ibitoye"],
+            "Raufu Iyiola Adedeji Ibitoye": ["Afusa Raufu Iyiola Adedeji Ibitoye", "Adijat Raufu Iyiola Adedeji Ibitoye", "Rashidat Raufu Iyiola Adedeji Ibitoye", "Isiaka Raufu Iyiola Adedeji Ibitoye", "Ismaila Raufu Iyiola Adedeji Ibitoye", "Yakubu Raufu Iyiola Adedeji Ibitoye", "Mumini Raufu Iyiola Adedeji Ibitoye", "Ruka Raufu Iyiola Adedeji Ibitoye", "Nurudeen Raufu Iyiola Adedeji Ibitoye"],
+            "Sariyu Ladoyin Adedeji Ibitoye": ["Bashiru Sariyu Ladoyin Adedeji Ibitoye", "Mashood Sariyu Ladoyin Adedeji Ibitoye"],
+            "Latundun Adedeji Ibitoye": ["Adijat Latundun Adedeji Ibitoye", "Tirimisiyu Latundun Adedeji Ibitoye", "Zainab Latundun Adedeji Ibitoye", "Ramotu Latundun Adedeji Ibitoye"],
+            "Olaniyi Yekin Adedeji Ibitoye": ["Jemila Omotayo Olaniyi Adedeji Ibitoye", "Taofeek bamidele Olaniyi Adedeji Ibitoye", "Saodat Mosebolatan Olaniyi Adedeji Ibitoye", "Sadiat Adebukola Olaniyi Adedeji Ibitoye", "Kafayat Temitope Olaniyi Adedeji Ibitoye", "Ilyas-Teslim Olalekan Olaniyi Adedeji Ibitoye", "Ayobami Daud Akinkunmi Olaniyi Adedeji Ibitoye"],
+            "Omotanbaje Adedeji Ibitoye": ["Abass Omotanbaje Adedeji Ibitoye", "Riskat Omotanbaje Adedeji Ibitoye"],
+            "olalounpe Ogunyemi Ibitoye": ["Aolat Olalounpe Ogunyemi Ibitoye", "Silifat Olalounpe Ogunyemi Ibitoye", "Amuda Olalounpe Ogunyemi Ibitoye", "Rahmon Olalounpe Ogunyemi Ibitoye", "Bintu Olalounpe Ogunyemi Ibitoye"],
+            "Mosunmola Ogunyemi Ibitoye": ["Dayo Mosunmola Ogunyemi Ibitoye", "Oluokun Mosunmola Ogunyemi Ibitoye", "Badewa Mosunmola Ogunyemi Ibitoye"],
+            "Monilola Ogunyemi Ibitoye": ["sunday Monilola Ogunyemi Ibitoye", "Jide Monilola Ogunyemi Ibitoye", "Gbade Monilola Ogunyemi Ibitoye", "Olukunle Monilola Ogunyemi Ibitoye", "Funmilayo Monilola Ogunyemi Ibitoye"],
+            "Lasisi Ogunyemi Ibitoye": ["Adijat Lasisi Ogunyemi Ibitoye", "Sarat Iyabo Lasisi Ogunyemi Ibitoye", "Rashidat Lasisi Ogunyemi Ibitoye", "Sikiru Lasisi Ogunyemi Ibitoye", "Fatimo Lasisi Ogunyemi Ibitoye", "Tawakalt Lasisi Ogunyemi Ibitoye", "Taibat Lasisi Ogunyemi Ibitoye", "Ganiyat Lasisi Ogunyemi Ibitoye", "Nurudeen Lasisi Ogunyemi Ibitoye", "Abdul'Hameed Lasisi Ogunyemi Ibitoye", "Fadeke Lasisi Ogunyemi Ibitoye", "Lateefat Lasisi Ogunyemi Ibitoye", "Abdul'Afeez Lasisi Ogunyemi Ibitoye", "Ibrahim Lasisi Ogunyemi Ibitoye", "Abolore Lasisi Ogunyemi Ibitoye"],
+            "Amusa Ogunyemi Ibitoye": ["Dimeji Amusa Ogunyemi Ibitoye", " -- Amusa Ogunyemi Ibitoye", "Idris Amusa Ogunyemi Ibitoye", "Taiye Amusa Ogunyemi Ibitoye", "Idowu Amusa Ogunyemi Ibitoye"],
+            "Jimoh Ogunyemi Ibitoye": ["Tajudeen Jimoh Ogunyemi Ibitoye", "Nafisat Jimoh Ogunyemi Ibitoye", "Saudat Jimoh Ogunyemi Ibitoye", "Jemilat Jimoh Ogunyemi Ibitoye", "Nurudeen Jimoh Ogunyemi Ibitoye", "Kodijat Jimoh Ogunyemi Ibitoye"],
+            "Alimi Ogunyemi Ibitoye": ["Oluwasegun Alimi Ogunyemi Ibitoye", "Olumide Alimi Ogunyemi Ibitoye", "Tunde Alimi Ogunyemi Ibitoye"],
+            "Sherifat Ogunyemi Ibitoye": ["Sherifat Ogunyemi Ibitoye Child 1", "Sherifat Ogunyemi Ibitoye Child 2", "Sherifat Ogunyemi Ibitoye Child 3"],
+            "Aminat Ogunyemi Ibitoye": ["Aminat Ogunyemi Ibitoye Child 1", "Aminat Ogunyemi Ibitoye Child 2", "Aminat Ogunyemi Ibitoye Child 3"],
+            "Morufu Ogunyemi Ibitoye": ["Morufu Ogunyemi Ibitoye Child 1", "Morufu Ogunyemi Ibitoye Child 2", "Morufu Ogunyemi Ibitoye Child 3"]
+
+        };
+
+
         const childrenCol = document.getElementById("childrenCol");
         const grandCol = document.getElementById("grandCol");
         const greatCol = document.getElementById("greatCol");
         const rootNode = document.getElementById("ogundepo");
         const svg = document.getElementById("svg");
         let activeChildName = null;
+        let activeGrandchildId = null;
+
 
         function init() {
             // Generate the 9 Children
@@ -256,7 +358,7 @@
                 el.onclick = () => selectBranch(name);
                 childrenCol.appendChild(el);
             });
-            
+
             // Initial positioning & first draw
             setTimeout(() => {
                 const midChild = document.getElementById("child-Bolarinwa");
@@ -267,36 +369,52 @@
 
         function selectBranch(name) {
             activeChildName = name;
-            
+
             // Highlight parent
             document.querySelectorAll(".node.child").forEach(n => n.classList.remove("active-parent"));
             document.getElementById(`child-${name.replace(/\s/g, '')}`).classList.add("active-parent");
+
+            activeGrandchildId = null;
 
             // Clear columns
             grandCol.innerHTML = "";
             greatCol.innerHTML = "";
 
-            // Populate Grandchildren based on the Child clicked
-            familyData[name].forEach((gcName, index) => {
+
+            // Populate Grandchildren based on the Child clicked (ONLY grandchildren on child click)
+            familyData[name].forEach((gcName) => {
                 const gNode = document.createElement("div");
                 gNode.className = "node grand";
                 const gcSafeId = `gc-${gcName.replace(/\s/g, '')}`; // ID without spaces
                 gNode.id = gcSafeId;
                 gNode.textContent = gcName;
-                grandCol.appendChild(gNode);
 
-                // Populate Great-Grandchildren based on the Grandchild name
-                // This looks into your 'allGrandchildren' object
-                if (allGrandchildren[gcName]) {
-                    allGrandchildren[gcName].forEach(ggcName => {
-                        const ggNode = document.createElement("div");
-                        ggNode.className = "node great";
-                        ggNode.textContent = ggcName;
-                        ggNode.setAttribute("data-parent-link", gcSafeId);
-                        greatCol.appendChild(ggNode);
-                    });
-                }
+                // On grandchild click, show great-grandchildren for that specific grandchild.
+                gNode.onclick = () => {
+                    activeGrandchildId = gcSafeId;
+                    greatCol.innerHTML = "";
+
+                    const groupWrapper = document.createElement("div");
+                    groupWrapper.className = "great-group";
+
+                    if (allGrandchildren[gcName]) {
+                        allGrandchildren[gcName].forEach(ggcName => {
+                            const ggNode = document.createElement("div");
+                            ggNode.className = "node great";
+                            ggNode.textContent = ggcName;
+                            ggNode.setAttribute("data-parent-link", gcSafeId);
+                            groupWrapper.appendChild(ggNode);
+                        });
+                    }
+
+                    greatCol.appendChild(groupWrapper);
+                    setTimeout(drawLines, 50);
+                };
+
+                grandCol.appendChild(gNode);
             });
+
+
 
             setTimeout(drawLines, 50);
         }
@@ -305,28 +423,30 @@
             svg.innerHTML = "";
             const sRect = document.getElementById("stage").getBoundingClientRect();
 
-            // 1. Root to all Children
-            document.querySelectorAll(".node.child").forEach(child => {
-                drawLine(rootNode, child, "#9ca3af", 1.5);
+            if (!activeChildName) return;
+
+            const childEl = document.getElementById(`child-${activeChildName.replace(/\s/g, '')}`);
+            if (!childEl) return;
+
+            // Root -> selected child
+            drawLine(rootNode, childEl, "#9ca3af", 1.5);
+
+            // selected child -> its grandchildren
+            document.querySelectorAll(".node.grand").forEach(gc => {
+                drawLine(childEl, gc, "var(--path-color)", 2);
             });
 
-            if (activeChildName) {
-                // 2. Selected Child to their Grandchildren
-                const parentEl = document.getElementById(`child-${activeChildName.replace(/\s/g, '')}`);
-                document.querySelectorAll(".node.grand").forEach(gc => {
-                    drawLine(parentEl, gc, "var(--path-color)", 2);
-                });
-
-                // 3. Grandchildren to Great-Grandchildren
-                document.querySelectorAll(".node.great").forEach(ggc => {
-                    const parentId = ggc.getAttribute("data-parent-link");
-                    const parentNode = document.getElementById(parentId);
-                    if (parentNode) {
+            // If a grandchild is active, draw only its great-grandchildren
+            if (activeGrandchildId) {
+                const parentNode = document.getElementById(activeGrandchildId);
+                if (parentNode) {
+                    document.querySelectorAll(`.node.great[data-parent-link="${activeGrandchildId}"]`).forEach(ggc => {
                         drawLine(parentNode, ggc, "#10b981", 1);
-                    }
-                });
+                    });
+                }
             }
         }
+
 
         function drawLine(el1, el2, color, width) {
             const r1 = el1.getBoundingClientRect();
@@ -341,7 +461,7 @@
             const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
             const midX = (x1 + x2) / 2;
             const d = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
-            
+
             path.setAttribute("d", d);
             path.setAttribute("stroke", color);
             path.setAttribute("stroke-width", width);
@@ -353,4 +473,5 @@
         window.onload = init;
     </script>
 </body>
+
 </html>
